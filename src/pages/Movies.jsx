@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import MovieGrid from "../components/MovieGrid";
-import { getMovies, CACHE_KEY } from "../api/tmdb";
-import { forget } from "../api/cache";
+import { getMovies } from "../api/backend"; // or tmdb  // TODO ขั้นที่ 3: import getMovies และ CACHE_KEY จาก backend.js แทน data.js
+// import { forget } from "../api/cache";
+// import { getMovies, CACHE_KEY } from "../api/tmdb";
 // import { movies as localMovies } from '../data/data';
 // TODO ขั้นที่ 3: import { useEffect } from 'react' และ import { getMovies, CACHE_KEY } from '../api/tmdb' กับ { forget } from '../api/cache'
 
 function Movies() {
   const [query, setQuery] = useState(""); // คำค้น (controlled input) กรองในเครื่อง ไม่ยิง API
   const [genre, setGenre] = useState("all"); // แนวที่เลือกจากแถบปุ่ม 'all' = ทุกแนว
-  
+
   const [movies, setMovies] = useState([]); // รายการจาก getMovies() (โหลดจริงวันละครั้ง)
   const [status, setStatus] = useState("loading"); // 'loading' | 'success' | 'error'
   const [error, setError] = useState(null);
@@ -107,10 +108,7 @@ function Movies() {
         movies={shown}
         status={status}
         error={error}
-        onRetry={() => {
-          /* TODO ขั้นที่ 3: forget(CACHE_KEY) แล้ว setReloadKey(k => k + 1) */
-          forget(CACHE_KEY); setReloadKey(k => k + 1);
-        }}
+        onRetry={() => setReloadKey((k) => k + 1)}
       />
     </div>
   );

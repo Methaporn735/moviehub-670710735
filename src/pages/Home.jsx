@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import FeaturedCarousel from '../components/FeaturedCarousel';
-import { getMovies } from '../api/tmdb';
+import { getMovies } from '../api/backend'; // or tmdb  // TODO ขั้นที่ 5: import getMovies จาก backend.js แทน data.js
 // ลบ import data.js ทิ้ง (ถ้าเหลือไว้แต่ไม่ได้ใช้ Vercel จะ build ล้มเพราะ warning)
 
 const STEPS = [
